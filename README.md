@@ -42,13 +42,13 @@ Copy the .p12 file to *webapp/WEB-INF/privatekeys* directory
 
 ## Run the app locally
 
-    > gradle appengineRun
+    gradle appengineRun
 
 A local server should be spawned, visit http://localhost:8080/file-name in your browser, if you see your file displayed then everything works!
 
 ## Deploy to App Engine
 
-    > gradle appengineUpdate
+    gradle appengineUpdate
 
 ## Set up your sub-domain
 
