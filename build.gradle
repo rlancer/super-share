@@ -60,11 +60,7 @@ appengine {
     jvmFlags = ['-Xmx1024m']
 
     appcfg {
-        email = 'rob@see.pub'
-        passIn = true
-        app {
-            id = 'some app id'
-        }
+        oauth2 = true
     }
 }
 
