@@ -4,5 +4,6 @@ out
 build
 .idea
 .gradle
+settings.gradle
 src/main/webapp/WEB-INF/appengine-web.xml
 src/main/webapp/WEB-INF/privatekeys
