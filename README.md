@@ -62,4 +62,4 @@ Go to the App Engine section, if you cant see it try clicking on More
 
 Next add your App Engine Id and map it to point to your sub-domain
 
-Setup your DNS so your sub domain matches your CNAME
+Follow the setup instructions to wire up your sub-domain in your DNS settings
