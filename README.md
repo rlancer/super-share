@@ -56,3 +56,10 @@ Generally we will want our users to visit *shares.our-domain.com/file-name*
 
 To set this up we will need to go to our Google Apps admin panel and wire up the Super Share app to our domain.
 
+Login to [admin.google.com](https://admin.google.com)
+
+Go to the App Engine section, if you cant see it try clicking on More
+
+Next add your App Engine Id and map it to point to your sub-domain
+
+Setup your DNS so your sub domain matches your CNAME
