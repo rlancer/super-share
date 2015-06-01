@@ -16,6 +16,8 @@ Super Share allows you to combine Google Drive and App Engine to create custom s
 
 ## Add in an appengine-web.xml
 
+Create the appengine-web.xml underneath the *webapp/WEB-INF* directory
+
 ```xml
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
     <application>cloud-console-project-id</application>
@@ -49,4 +51,8 @@ A local server should be spawned, visit http://localhost:8080/file-name in your 
     > gradle appengineUpdate
 
 ## Set up your sub-domain
+
+Generally we will want our users to visit *shares.our-domain.com/file-name*
+
+To set this up we will need to go to our Google Apps admin panel and wire up the Super Share app to our domain.
 
