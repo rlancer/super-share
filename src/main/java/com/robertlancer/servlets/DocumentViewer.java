@@ -21,7 +21,7 @@ public class DocumentViewer extends HttpServlet {
 
         String pathInfo = req.getPathInfo();
 
-        if (pathInfo == null) {
+        if (pathInfo == null || pathInfo.length() <= 1) {
             sendError(404, resp);
             return;
         }
@@ -29,16 +29,18 @@ public class DocumentViewer extends HttpServlet {
         String fileTitle = pathInfo.substring(1).replace("-", " ");
 
         String folderId = System.getProperty("folder");
-        String email = System.getProperty("proxy-email");
+        String email = System.getProperty("email");
 
         Drive drive = ServiceFactory.getDriveService(email);
-        List<File> items = drive.files().list().setQ("'" + folderId + "' in parents").execute().getItems();
+        List<File> items = getFiles(folderId, email);
 
         File fileToOutput = null;
 
-        for (File file : items)
+        for (File file : items) {
+
             if (file.getTitle().equalsIgnoreCase(fileTitle))
                 fileToOutput = file;
+        }
 
         if (fileToOutput == null) {
             sendError(404, resp);
@@ -62,9 +64,18 @@ public class DocumentViewer extends HttpServlet {
         // mailViewReport(req);
     }
 
+    public static List<File> getFiles(String folderId, String email) {
+        try {
+            Drive drive = ServiceFactory.getDriveService(email);
+            List<File> items = drive.files().list().setQ("'" + folderId + "' in parents").execute().getItems();
+            return items;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
     public void sendError(int code, HttpServletResponse resp) {
         try {
-
             resp.setStatus(code);
             if (code == 404)
                 resp.getWriter().write("Sorry could not find the document you were looking for.");
