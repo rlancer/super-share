@@ -23,6 +23,7 @@ Demos
 ##Prerequisites
 
 +   [Perform Google Apps Domain-Wide Delegation of Authority](https://developers.google.com/drive/web/delegation)
++   At a minimum you will need to have the https://www.googleapis.com/auth/drive scope enabled  
 +   Create a project in the [Google Cloud Console](http://console.developers.google.com)
 
 ##Get the code

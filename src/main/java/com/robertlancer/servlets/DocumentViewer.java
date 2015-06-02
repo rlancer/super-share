@@ -92,7 +92,10 @@ public class DocumentViewer extends HttpServlet {
 
     StringBuilder output = new StringBuilder();
     output.append("<html>");
-    output.append("<head><title>" + fileToOutput.getTitle() + "</title></head>");
+    output.append("<head><title>" + fileToOutput.getTitle() + "</title>");
+    output.append("<link rel=\"icon\" type=\"image/png\"\n" +
+      " href=\"" + fileToOutput.getIconLink() + "\" />");
+    output.append("</head>");
     output.append("<body>");
     output.append("<style>\n");
     output.append("html, body { overflow:hidden; height:100%; padding:0px; margin:0px; }");
@@ -125,10 +128,11 @@ public class DocumentViewer extends HttpServlet {
   }
 
   public static List<File> getFiles(String folderId, String email) {
+    Drive drive = ServiceFactory.getDriveService(email);
+    List<File> items = null;
     try {
-      Drive drive = ServiceFactory.getDriveService(email);
-      List<File> items = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false").setFields("items(owners,id,downloadUrl,iconLink,mimeType,webViewLink,webContentLink,permissions,title)").execute().getItems();
-      return items;
+      Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false").setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)");
+      return request.execute().getItems();
     } catch (Exception ex) {
       return null;
     }

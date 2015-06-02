@@ -17,36 +17,7 @@ import java.util.Properties;
 public class Mail {
 
 
-    public void mailViewReport(HttpServletRequest req) {
-        String pathInfo = req.getPathInfo();
 
-        String path = "";
-
-        if (pathInfo != null) {
-            path = pathInfo.toString();
-        }
-
-        String ipAddress = req.getRemoteAddr();
-
-        String viewingName = req.getServletPath().substring(1);
-
-        String target = "rob@see.pub";
-        try {
-            Gmail gmail = ServiceFactory.getGmailService(target);
-            MimeMessage mimeMessage = Mail.createEmail("robert.lancer@gmail.com", "\"View Alert\" <" + target + ">", "Your " + viewingName + " was viewed " + path + ".",
-                    "Your " + viewingName + " was viewed by \"" + path + "\" " +
-                            ipAddress + "\n" +
-                            req.getHeader("Referer") + "\n" +
-                            req.getHeader("User-Agent") + "\n" + new Date().toLocaleString()
-            );
-
-            Mail.sendMessage(gmail, "me", mimeMessage);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Send an email from the user's mailbox to its recipient.
