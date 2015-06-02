@@ -3,7 +3,7 @@ Super Share
 
 Super Share is a more elegant way to share documents from Google Drive
 
-**Note this system atomically changes certain file permissions to Anyone with the link can view**  
+**Note this system atomically changes certain file permissions to include <span style=text-decoration:underline;>Anyone with the link can view</span>**  
 
 + Shares live on your domain with the URL pattern of share.example.com/file-title
 + No Google Drive Chrome or branding
