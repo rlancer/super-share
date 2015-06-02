@@ -9,11 +9,11 @@ It deploys to Google App Engine and is designed to be efficient enough to run wi
 
 **This system automatically changes certain file permissions to include Anyone with the link can view**  
 
-+ Shares take the URL pattern; share.example.com/file-title
++ share.example.com/file-title URL pattern 
 + No Google Drive branding 
 + Runs on Google App Engine
 + Will easily run within the free daily App Engine quota
-+ Open Source with the MIT License feel free to fork it and customize it
++ Open Source with the MIT License. Feel free to fork it and customize it
 
 Demos
 + [Picture](http://share.robertlancer.com/KoreanBBQ.jpg)
@@ -26,7 +26,7 @@ Demos
 ##Prerequisites
 
 +   [Perform Google Apps Domain-Wide Delegation of Authority](https://developers.google.com/drive/web/delegation)
-+   At a minimum you will need to have the https://www.googleapis.com/auth/drive scope enabled  
++   At a minimum you will need to have the *https://www.googleapis.com/auth/drive* scope enabled  
 +   Create a project in the [Google Cloud Console](http://console.developers.google.com)
 
 ##Get the code
@@ -37,7 +37,7 @@ Demos
 ##Arange your Content
 
 + Create a folder in Drive
-+ Add in the files you would like to share underneath that folder. 
++ Add in the files you would like to share underneath that folder
 + Files will automatically have their permission updated to *Anyone with the link* can view
 
 ## Add in an appengine-web.xml
@@ -61,7 +61,7 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust t
 
 ## Add your Private Key
 
-The private key comes from performing domain wide delegation of authority.
+The private key comes from performing domain wide delegation of authority
 
 Copy the .p12 file to *webapp/WEB-INF/privatekeys* directory
 
@@ -70,7 +70,7 @@ Copy the .p12 file to *webapp/WEB-INF/privatekeys* directory
 
     gradle appengineRun
 
-A local server should be spawned, visit http://localhost:8080/file-name in your browser, if you see your file displayed then everything works!
+A local server should be spawned. Visit http://localhost:8080/file-name in your browser. If you see your file displayed then everything works!
 
 ## Deploy to App Engine
 
@@ -80,11 +80,11 @@ A local server should be spawned, visit http://localhost:8080/file-name in your 
 
 Generally we will want our users to visit *shares.our-domain.com/file-name*
 
-To set this up we will need to go to our Google Apps admin panel and wire up the Super Share app to our domain.
+To set this up we will need to go to our Google Apps admin panel and wire up the Super Share app to our domain
 
 Login to [admin.google.com](https://admin.google.com)
 
-Go to the App Engine section, if you cant see it try clicking on More
+Go to the App Engine section - If you cant see it try clicking on More
 
 Next add your App Engine Id and map it to point to your sub-domain
 
