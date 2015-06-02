@@ -111,7 +111,7 @@ public class DocumentViewer extends HttpServlet {
 
   public static List<File> getFiles(String folderId, String email) throws IOException {
     Drive drive = ServiceFactory.getDriveService(email);
-    Drive.Files.List request = drive.files().list().setQ(folderId + "' in parents and trashed = false").setMaxResults(1000).setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)");
+    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false").setMaxResults(1000).setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)");
     List<File> items = new DriveBackoff<FileList>().execute(request, false).getItems();
     return items;
   }
