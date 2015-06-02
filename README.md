@@ -28,7 +28,7 @@ Demos
     git clone https://github.com/rlancer/super-share.git
     cd super-share
 
-##Arange your content
+##Arange your Content
 
 + Create a folder in Drive
 + Add in the files you would like to share underneath that folder. 
@@ -55,14 +55,14 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust t
 
  
 
-## Add your private key
+## Add your Private Key
 
 The private key comes from performing domain wide delegation of authority.
 
 Copy the .p12 file to *webapp/WEB-INF/privatekeys* directory
 
 
-## Run the app locally
+## Run the App Locally
 
     gradle appengineRun
 
@@ -72,7 +72,7 @@ A local server should be spawned, visit http://localhost:8080/file-name in your 
 
     gradle appengineUpdate
 
-## Set up your sub-domain
+## Set up your Sub-domain
 
 Generally we will want our users to visit *shares.our-domain.com/file-name*
 
