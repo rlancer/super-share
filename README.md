@@ -4,12 +4,12 @@ Super Share
 Super Share is a more elegant way to share document from Google Drive
 
 + Shares live on your domain with the URL pattern of share.example.com/file-title
-+ No Google Drive Chrome or banding
++ No Google Drive Chrome or branding
 + Runs on Google App Engine
 + Will easily run within the free daily App Engine quota
 + Open Source with the MIT License feel free to fork it and customize it
 
-Samples
+Demos
 + [Spreadsheet](http://share.robertlancer.com/Spreadsheet)
 + [Video](http://share.robertlancer.com/Roadtrip.mp4)
 + [PDF](http://share.robertlancer.com/Comic-Book.pdf)
@@ -23,9 +23,8 @@ Samples
 
 ##Get the code
 
-    mkdir super-share
-    cd super-share
     git clone https://github.com/rlancer/super-share.git
+    cd super-share
 
 ## Add in an appengine-web.xml
 
