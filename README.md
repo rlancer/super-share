@@ -53,6 +53,8 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory
 </appengine-web-app>
 ```
 
+Adjust the properties above to match your environment's settings. 
+
 ## Add your private key
 
 The private key comes from performing domain wide delegation of authority.
