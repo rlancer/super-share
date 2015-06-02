@@ -1,13 +1,13 @@
 Super Share
 =========== 
 
-<iframe src="https://docs.google.com/presentation/d/1UBP72MskfBrCITeRWR9jQkswXfHT4TXx46a1OQxz6l0/embed?start=false&loop=false&delayms=3000" frameborder="0" width="570" height="310" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+[Super Share Presentation](http://share.robertlancer.com/Super-Share)
 
 Super Share is a more elegant way to share documents from Google Drive for Google Apps users. 
 
 It deploys to Google App Engine and is designed to be efficient enough to run within App Engine's free daily quota. 
 
-**This system atomically changes certain file permissions to include Anyone with the link can view**  
+**This system automatically changes certain file permissions to include Anyone with the link can view**  
 
 + Shares take the URL pattern; share.example.com/file-title
 + No Google Drive branding 
