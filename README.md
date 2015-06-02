@@ -1,6 +1,8 @@
 Super Share
 ===========
 
+<iframe src="https://docs.google.com/presentation/d/1UBP72MskfBrCITeRWR9jQkswXfHT4TXx46a1OQxz6l0/embed?start=false&loop=false&delayms=3000" frameborder="0" width="570" height="310" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
 Super Share is a more elegant way to share documents from Google Drive for Google Apps users. 
 
 It deploys to Google App Engine and is designed to be efficient enough to run within App Engine's free daily quota. 
@@ -14,6 +16,7 @@ It deploys to Google App Engine and is designed to be efficient enough to run wi
 + Open Source with the MIT License feel free to fork it and customize it
 
 Demos
++ [Picture](http://share.robertlancer.com/KoreanBBQ.jpg)
 + [Spreadsheet](http://share.robertlancer.com/Spreadsheet)
 + [Video](http://share.robertlancer.com/Roadtrip.mp4)
 + [PDF](http://share.robertlancer.com/Comic-Book.pdf)
