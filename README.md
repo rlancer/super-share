@@ -3,6 +3,8 @@ Super Share
 
 Super Share is a more elegant way to share document from Google Drive
 
+**Note this system atomically changes certain file permissions to Anyone with the link can view**  
+
 + Shares live on your domain with the URL pattern of share.example.com/file-title
 + No Google Drive Chrome or branding
 + Runs on Google App Engine
@@ -30,8 +32,7 @@ Demos
 
 + Create a folder in Drive
 + Add in the files you would like to share underneath that folder. 
-+ The files should have the permission of *Anyone with the link* can view
-+ **If the files do not have that permission level it will automatically be modified to match that permission level** 
++ Files will automatically have their permission updated to *Anyone with the link* can view
 
 ## Add in an appengine-web.xml
 
