@@ -1,7 +1,7 @@
 Super Share
 ===========
 
-Super Share is a more elegant way to share document from Google Drive
+Super Share is a more elegant way to share documents from Google Drive
 
 **Note this system atomically changes certain file permissions to Anyone with the link can view**  
 
