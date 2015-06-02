@@ -36,7 +36,7 @@ Demos
 
 ## Add in an appengine-web.xml
 
-Create the appengine-web.xml underneath the *webapp/WEB-INF* directory
+Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust the properties to match your environment's settings. 
 
 ```xml
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
@@ -53,7 +53,7 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory
 </appengine-web-app>
 ```
 
-Adjust the properties above to match your environment's settings. 
+ 
 
 ## Add your private key
 
