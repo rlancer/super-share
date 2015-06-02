@@ -1,9 +1,11 @@
 Super Share
 ===========
 
-Super Share is a more elegant way to share documents from Google Drive
+Super Share is a more elegant way to share documents from Google Drive for Google Apps users. 
 
-**Note this system atomically changes certain file permissions to include Anyone with the link can view**  
+It deploys to Google App Engine and is designed to be efficient enough to run within App Engine's free daily quota. 
+
+**This system atomically changes certain file permissions to include Anyone with the link can view**  
 
 + Shares live on your domain with the URL pattern of share.example.com/file-title
 + No Google Drive Chrome or branding
@@ -52,8 +54,6 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust t
     </system-properties>
 </appengine-web-app>
 ```
-
- 
 
 ## Add your Private Key
 
