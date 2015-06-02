@@ -116,7 +116,7 @@ public class ServiceFactory {
         String classSimpleName = classOf.getSimpleName();
 
         java.util.Set<String> set = new java.util.HashSet<String>();
-        set.add(DriveScopes.DRIVE_READONLY);
+        set.add(DriveScopes.DRIVE);
         sets = java.util.Collections.unmodifiableSet(set);
 
         HttpTransport httpTransport = new NetHttpTransport();

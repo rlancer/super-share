@@ -3,6 +3,7 @@ package com.robertlancer.servlets;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.Permission;
 import com.robertlancer.util.DriveUtil;
 import com.robertlancer.util.Mime;
 import com.robertlancer.util.Resources;
@@ -47,9 +48,25 @@ public class DocumentViewer extends HttpServlet {
             return;
         } else {
 
-            byte[] bytes = null;
+            boolean anyoneHasAccess = false;
+            for (Permission permission : fileToOutput.getPermissions()) {
+                if (permission.getType().equalsIgnoreCase("anyone")) {
+                    anyoneHasAccess = true;
+                    break;
+                }
+            }
 
-            String mimeType = fileToOutput.getMimeType();
+            if (!anyoneHasAccess) {
+                Permission permission = new Permission();
+                permission.setType("anyone");
+                permission.setRole("reader");
+                permission.setWithLink(true);
+
+                Permission inserted = ServiceFactory.getDriveService(email).permissions().insert(fileToOutput.getId(), permission).execute();
+                System.out.println("Permission upgraded to anyone with the link> " + inserted.toPrettyString());
+            }
+
+
 
             /*if (fileToOutput.getExportLinks() != null) {
                 bytes = DriveUtil.exportGoogleDocAs(email, fileToOutput, "application/pdf");
@@ -113,7 +130,7 @@ public class DocumentViewer extends HttpServlet {
     public static List<File> getFiles(String folderId, String email) {
         try {
             Drive drive = ServiceFactory.getDriveService(email);
-            List<File> items = drive.files().list().setQ("'" + folderId + "' in parents").execute().getItems();
+            List<File> items = drive.files().list().setQ("'" + folderId + "' in parents").setFields("items(owners,id,downloadUrl,iconLink,mimeType,webViewLink,webContentLink,permissions,title)").execute().getItems();
             return items;
         } catch (Exception ex) {
             return null;
