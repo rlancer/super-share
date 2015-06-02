@@ -1,12 +1,9 @@
 package com.robertlancer.servlets;
 
-import com.google.api.client.http.HttpResponse;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.Permission;
-import com.robertlancer.util.DriveUtil;
 import com.robertlancer.util.Mime;
-import com.robertlancer.util.Resources;
 import com.robertlancer.util.ServiceFactory;
 
 import javax.servlet.ServletException;
@@ -65,23 +62,9 @@ public class DocumentViewer extends HttpServlet {
         Permission inserted = ServiceFactory.getDriveService(email).permissions().insert(fileToOutput.getId(), permission).execute();
         System.err.println("Permission upgraded to anyone with the link " + fileToOutput.getTitle());
       }
-            /*if (fileToOutput.getExportLinks() != null) {
-                bytes = DriveUtil.exportGoogleDocAs(email, fileToOutput, "application/pdf");
-                resp.setContentType("application/pdf");
-            } else {*/
+
       resp.getWriter().write(outputFile(fileToOutput));
-      // }
-
-
     }
-
-    // mailViewReport(req);
-  }
-
-  public static void outputFileAsRawBytes(HttpServletResponse resp, String email, File fileToOutput, String mimeType) throws IOException {
-    byte[] bytes = DriveUtil.downloadFile(email, fileToOutput);
-    resp.getOutputStream().write(bytes);
-    resp.setContentType(mimeType);
   }
 
   public static String outputFile(File fileToOutput) {
