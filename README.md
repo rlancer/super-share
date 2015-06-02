@@ -3,6 +3,13 @@ Super Share
 
 Super Share allows you to combine Google Drive and App Engine to create custom shares for your domain.
 
+Samples
++ [Spreadsheet](http://share.robertlancer.com/Spreadsheet)
++ [Video](http://share.robertlancer.com/Roadtrip.mp4)
++ [PDF](http://share.robertlancer.com/Comic-Book.pdf)
++ [Google Doc](http://share.robertlancer.com/Press)
++ [Google Slides](http://share.robertlancer.com/Super-Share)
+
 ##Prerequisites
 
 +   [Perform Google Apps Domain-Wide Delegation of Authority](https://developers.google.com/drive/web/delegation)

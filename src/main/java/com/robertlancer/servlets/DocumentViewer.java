@@ -4,6 +4,7 @@ import com.google.api.client.http.HttpResponse;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.robertlancer.util.DriveUtil;
+import com.robertlancer.util.Mime;
 import com.robertlancer.util.Resources;
 import com.robertlancer.util.ServiceFactory;
 
@@ -37,7 +38,6 @@ public class DocumentViewer extends HttpServlet {
         File fileToOutput = null;
 
         for (File file : items) {
-
             if (file.getTitle().equalsIgnoreCase(fileTitle))
                 fileToOutput = file;
         }
@@ -50,18 +50,64 @@ public class DocumentViewer extends HttpServlet {
             byte[] bytes = null;
 
             String mimeType = fileToOutput.getMimeType();
-            if (fileToOutput.getExportLinks() != null) {
+
+            /*if (fileToOutput.getExportLinks() != null) {
                 bytes = DriveUtil.exportGoogleDocAs(email, fileToOutput, "application/pdf");
                 resp.setContentType("application/pdf");
-            } else {
-                bytes = DriveUtil.downloadFile(email, fileToOutput);
-                resp.setContentType(mimeType);
-            }
+            } else {*/
+            resp.getWriter().write(outputFile(fileToOutput));
+            // }
 
-            resp.getOutputStream().write(bytes);
+
         }
 
         // mailViewReport(req);
+    }
+
+    public static void outputFileAsRawBytes(HttpServletResponse resp, String email, File fileToOutput, String mimeType) throws IOException {
+        byte[] bytes = DriveUtil.downloadFile(email, fileToOutput);
+        resp.getOutputStream().write(bytes);
+        resp.setContentType(mimeType);
+    }
+
+    public static String outputFile(File fileToOutput) {
+
+        String url = outputFileAsIFrameGetURL(fileToOutput);
+
+        String iframe = "<iframe src='" + url + "' frameborder=0 style='width:100%;height:100%;' /></iframe>";
+
+        StringBuilder output = new StringBuilder();
+        output.append("<html>");
+        output.append("<head><title>" + fileToOutput.getTitle() + "</title></head>");
+        output.append("<body>");
+        output.append("<style>\n");
+        output.append("html, body { overflow:hidden; height:100%; padding:0px; margin:0px; }");
+        output.append("\n</style>");
+        output.append(iframe);
+        output.append("</body></html>");
+
+        return output.toString();
+    }
+
+    public static String outputFileAsIFrameGetURL(File fileToOutput) {
+
+        String domain = fileToOutput.getOwners().get(0).getEmailAddress().split("@")[1];
+        String id = fileToOutput.getId();
+
+        switch (fileToOutput.getMimeType()) {
+            case Mime.DOCUMENT:
+                return "https://docs.google.com/a/" + domain + "/document/d/" + id + "/preview";
+            case Mime.SPREADSHEET:
+                return "https://docs.google.com/a/" + domain + "/spreadsheet/ccc?key=" + id + "&output=html&widget=true&chrome=false";
+            case Mime.PRESENTATION:
+                return "https://docs.google.com/a/" + domain + "/presentation/d/" + id + "/preview";
+            case Mime.DRAWING:
+                return "https://docs.google.com/a/" + domain + "/drawings/d/" + id + "/preview";
+            default:
+                return "https://docs.google.com/a/" + domain + "/file/d/" + id + "/preview";
+        }
+
+
     }
 
     public static List<File> getFiles(String folderId, String email) {
