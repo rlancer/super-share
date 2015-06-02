@@ -2,7 +2,9 @@ package com.robertlancer.supershare.servlets;
 
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.Permission;
+import com.robertlancer.supershare.util.DriveBackoff;
 import com.robertlancer.supershare.util.Mime;
 import com.robertlancer.supershare.util.ServiceFactory;
 
@@ -30,7 +32,6 @@ public class DocumentViewer extends HttpServlet {
     String folderId = System.getProperty("folder");
     String email = System.getProperty("email");
 
-    Drive drive = ServiceFactory.getDriveService(email);
     List<File> items = getFiles(folderId, email);
 
     File fileToOutput = null;
@@ -106,19 +107,13 @@ public class DocumentViewer extends HttpServlet {
       default:
         return "https://docs.google.com/a/" + domain + "/file/d/" + id + "/preview";
     }
-
-
   }
 
-  public static List<File> getFiles(String folderId, String email) {
+  public static List<File> getFiles(String folderId, String email) throws IOException {
     Drive drive = ServiceFactory.getDriveService(email);
-    List<File> items = null;
-    try {
-      Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false").setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)");
-      return request.execute().getItems();
-    } catch (Exception ex) {
-      return null;
-    }
+    Drive.Files.List request = drive.files().list().setQ(folderId + "' in parents and trashed = false").setMaxResults(1000).setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)");
+    List<File> items = new DriveBackoff<FileList>().execute(request, false).getItems();
+    return items;
   }
 
   public void sendError(int code, HttpServletResponse resp) {
