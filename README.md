@@ -28,7 +28,10 @@ Demos
 
 ##Arange your content
 
-Create a folder in Drive and add in the files you would like to share underneath that folder. The files should have the permission of *Anyone with the link* can view, if the files do not have that permission level it will automatically be modified to have that permission level.   
++ Create a folder in Drive
++ Add in the files you would like to share underneath that folder. 
++ The files should have the permission of *Anyone with the link* can view
++ <b>If the files do not have that permission level it will automatically be modified to match that permission level</b> 
 
 ## Add in an appengine-web.xml
 
