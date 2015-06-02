@@ -1,10 +1,10 @@
-package com.robertlancer.servlets;
+package com.robertlancer.supershare.servlets;
 
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.Permission;
-import com.robertlancer.util.Mime;
-import com.robertlancer.util.ServiceFactory;
+import com.robertlancer.supershare.util.Mime;
+import com.robertlancer.supershare.util.ServiceFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

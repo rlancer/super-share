@@ -1,4 +1,4 @@
-package com.robertlancer.util;
+package com.robertlancer.supershare.util;
 
 
 public class Mime {

@@ -1,4 +1,4 @@
-package com.robertlancer.util;
+package com.robertlancer.supershare.util;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;

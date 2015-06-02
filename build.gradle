@@ -3,65 +3,61 @@ apply plugin: 'gaelyk'
 
 
 buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
+  repositories {
+    mavenCentral()
+    jcenter()
+  }
 
-    dependencies {
-        classpath 'org.gradle.api.plugins:gradle-gaelyk-plugin:0.6'
-    }
-}
-
-task myType << {
-    println gradle.ext.foo
+  dependencies {
+    classpath 'org.gradle.api.plugins:gradle-gaelyk-plugin:0.6'
+  }
 }
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 repositories {
-    mavenCentral()
-    jcenter()
+  mavenCentral()
+  jcenter()
 }
 
 dependencies {
-    def gaeVersion = '1.9.19'
-    def groovyVersion = '2.3.0'
+  def gaeVersion = '1.9.19'
+  def groovyVersion = '2.3.0'
 
-    compile "com.google.appengine:appengine-api-1.0-sdk:$gaeVersion",
-            "com.google.appengine:appengine-api-labs:$gaeVersion",
-            "com.google.appengine:appengine-endpoints:$gaeVersion"
-    compile 'commons-codec:commons-codec:1.8'
-    compile 'com.google.guava:guava:17.0',
-            'com.google.code.gson:gson:1.7.1'
-    compile 'com.google.api-client:google-api-client:1.18.0-rc',
-            'com.google.apis:google-api-services-drive:v2-rev126-1.18.0-rc',
-            'com.google.http-client:google-http-client-jackson:1.15.0-rc',
-            'com.google.apis:google-api-services-gmail:v1-rev2-1.18.0-rc',
-            'joda-time:joda-time:2.3',
-            'com.github.rjeschke:txtmark:0.13',
-            'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0',
-            'com.google.gdata:core:1.47.1',
-            'com.google.http-client:google-http-client-jackson2:1.11.0-beta'
-    compile 'com.google.apis:google-api-services-admin:directory_v1-rev32-1.16.0-rc'
-    compile 'com.google.api.client:google-api-data-contacts-v3:1.0.10-alpha',
-            'net.sf.jtidy:jtidy:r938',
-            'net.sf.opencsv:opencsv:2.0',
-            'javax.inject:javax.inject:1'
-    appengineSdk "com.google.appengine:appengine-java-sdk:$gaeVersion"
+  compile "com.google.appengine:appengine-api-1.0-sdk:$gaeVersion",
+    "com.google.appengine:appengine-api-labs:$gaeVersion",
+    "com.google.appengine:appengine-endpoints:$gaeVersion"
+  compile 'commons-codec:commons-codec:1.8'
+  compile 'com.google.guava:guava:17.0',
+    'com.google.code.gson:gson:1.7.1'
+  compile 'com.google.api-client:google-api-client:1.18.0-rc',
+    'com.google.apis:google-api-services-drive:v2-rev126-1.18.0-rc',
+    'com.google.http-client:google-http-client-jackson:1.15.0-rc',
+    'com.google.apis:google-api-services-gmail:v1-rev2-1.18.0-rc',
+    'joda-time:joda-time:2.3',
+    'com.github.rjeschke:txtmark:0.13',
+    'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0',
+    'com.google.gdata:core:1.47.1',
+    'com.google.http-client:google-http-client-jackson2:1.11.0-beta'
+  compile 'com.google.apis:google-api-services-admin:directory_v1-rev32-1.16.0-rc'
+  compile 'com.google.api.client:google-api-data-contacts-v3:1.0.10-alpha',
+    'net.sf.jtidy:jtidy:r938',
+    'net.sf.opencsv:opencsv:2.0',
+    'javax.inject:javax.inject:1'
+  appengineSdk "com.google.appengine:appengine-java-sdk:$gaeVersion"
 }
 
 
 appengine {
-    httpPort = 9002
-    downloadSdk = true
+  httpPort = 9002
+  downloadSdk = true
 
-    jvmFlags = ['-Xmx1024m']
+  jvmFlags = ['-Xmx1024m']
 
-    appcfg {
-        oauth2 = true
-    }
+  appcfg {
+    oauth2 = true
+  }
 }
 
 compileJava.options.encoding = 'UTF-8'
