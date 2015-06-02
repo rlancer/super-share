@@ -26,6 +26,10 @@ Demos
     git clone https://github.com/rlancer/super-share.git
     cd super-share
 
+##Arange your content
+
+Create a folder in Drive and add in the files you would like to share underneath that folder. The files should have the permission of *Anyone with the link* can view, if the files do not have that permission level it will automatically be modified to have that permission level.   
+
 ## Add in an appengine-web.xml
 
 Create the appengine-web.xml underneath the *webapp/WEB-INF* directory
