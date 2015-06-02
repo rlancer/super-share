@@ -1,7 +1,13 @@
 Super Share
 ===========
 
-Super Share allows you to combine Google Drive and App Engine to create custom shares for your domain.
+Super Share is a more elegant way to share document from Google Drive
+
++ Shares live on your domain with the URL pattern of share.example.com/file-title
++ No Google Drive Chrome or banding
++ Runs on Google App Engine
++ Will easily run within the free daily App Engine quota
++ Open Source with the MIT License feel free to fork it and customize it
 
 Samples
 + [Spreadsheet](http://share.robertlancer.com/Spreadsheet)
