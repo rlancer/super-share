@@ -7,7 +7,7 @@ It deploys to Google App Engine and is designed to be efficient enough to run wi
 
 **This system atomically changes certain file permissions to include Anyone with the link can view**  
 
-+ Shares live on your domain with the URL pattern of share.example.com/file-title
++ Shares take the URL pattern; share.example.com/file-title
 + No Google Drive branding 
 + Runs on Google App Engine
 + Will easily run within the free daily App Engine quota
