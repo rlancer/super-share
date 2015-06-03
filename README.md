@@ -10,7 +10,7 @@ It deploys to Google App Engine and is designed to be efficient enough to run wi
 **This system automatically changes certain file permissions to include Anyone with the link can view**  
 
 + share.example.com/file-title URL pattern 
-+ Supports partial matches, ie: "kor" will match Korean in a photo of Korean BBQ
++ Supports partial matches, ie: "Road" will match "RoadTrip.mp4" 
 + No Google Drive branding 
 + Runs on Google App Engine
 + Will easily run within the free daily App Engine quota
