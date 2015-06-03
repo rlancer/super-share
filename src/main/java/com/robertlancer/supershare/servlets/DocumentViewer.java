@@ -57,7 +57,6 @@ public class DocumentViewer extends HttpServlet {
 
         Drive.Permissions.Insert updatePermissionReq = ServiceFactory.getDriveService(email).permissions().insert(fileToOutput.getId(), permission);
         Permission inserted = new DriveBackoff<Permission>().execute(updatePermissionReq, false);
-        System.err.println("Permission upgraded to anyone with the link " + fileToOutput.getTitle());
       }
 
       resp.getWriter().write(outputFile(fileToOutput));
