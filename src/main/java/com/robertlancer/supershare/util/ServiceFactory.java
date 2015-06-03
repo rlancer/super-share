@@ -26,7 +26,6 @@ import java.util.Map;
 public class ServiceFactory {
 
   public static String emailAddress;
-  public static String keyFingerprints;
   public static PrivateKey privateKey;
 
   static {
@@ -43,9 +42,8 @@ public class ServiceFactory {
       throw new RuntimeException("You must have a private key underneath the WEB-INF/privatekey/ directory.");
 
     try {
-      
+
       emailAddress = System.getProperty("serviceAccountEmailAddress");
-      keyFingerprints = System.getProperty("serviceAccountCertificateFingerprints");
 
       InputStream iss = new FileInputStream(filesUnderPrivateKey[0]);
       KeyStore keystore = KeyStore.getInstance("PKCS12");
