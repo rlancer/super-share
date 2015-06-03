@@ -41,7 +41,6 @@ public class DocumentViewer extends HttpServlet {
       sendError(404, resp);
       return;
     } else {
-
       boolean anyoneHasAccess = false;
       for (Permission permission : fileToOutput.getPermissions()) {
         if (permission.getType().equalsIgnoreCase("anyone")) {
@@ -56,7 +55,8 @@ public class DocumentViewer extends HttpServlet {
         permission.setRole("reader");
         permission.setWithLink(true);
 
-        Permission inserted = ServiceFactory.getDriveService(email).permissions().insert(fileToOutput.getId(), permission).execute();
+        Drive.Permissions.Insert updatePermissionReq = ServiceFactory.getDriveService(email).permissions().insert(fileToOutput.getId(), permission);
+        Permission inserted = new DriveBackoff<Permission>().execute(updatePermissionReq, false);
         System.err.println("Permission upgraded to anyone with the link " + fileToOutput.getTitle());
       }
 
@@ -133,7 +133,6 @@ public class DocumentViewer extends HttpServlet {
         resp.getWriter().write("Sorry could not find the document you were looking for.");
       else
         resp.getWriter().write("An internal error occurred please try again soon.");
-
     } catch (Exception e) {
       e.printStackTrace(System.err);
     }

@@ -1,6 +1,5 @@
 package com.robertlancer.supershare.util;
 
-import com.github.rjeschke.txtmark.Run;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.client.http.HttpRequest;
@@ -82,11 +81,8 @@ public class ServiceFactory {
         googleCredential.refreshToken();
       } catch (IOException e) {
         System.err.println("Error refreshing token for " + googleCredential.getServiceAccountUser());
-        // e.printStackTrace();
         throw new ClientException(e);
       }
-    } else {
-      //    System.out.println("Not refreshing access token.");
     }
     return googleCredential.getAccessToken();
   }
