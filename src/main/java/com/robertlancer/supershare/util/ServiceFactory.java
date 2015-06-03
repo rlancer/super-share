@@ -11,6 +11,7 @@ import com.google.api.client.util.Maps;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.gmail.Gmail;
+import com.google.api.services.gmail.GmailScopes;
 
 import java.io.File;
 import java.io.FileInputStream;

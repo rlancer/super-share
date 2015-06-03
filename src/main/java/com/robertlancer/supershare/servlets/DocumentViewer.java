@@ -60,6 +60,8 @@ public class DocumentViewer extends HttpServlet {
       }
 
       resp.getWriter().write(outputFile(fileToOutput));
+
+
     }
   }
 
