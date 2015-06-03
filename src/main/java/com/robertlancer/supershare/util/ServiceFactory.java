@@ -1,5 +1,6 @@
 package com.robertlancer.supershare.util;
 
+import com.github.rjeschke.txtmark.Run;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient;
 import com.google.api.client.http.HttpRequest;
@@ -29,16 +30,27 @@ public class ServiceFactory {
   public static PrivateKey privateKey;
 
   static {
-    try {
 
+    File privateKeysDirectory = new File("WEB-INF/privatekey/");
+
+    if (!privateKeysDirectory.exists()) {
+      throw new RuntimeException("You must have a privatekey directory underneath the WEB-INF directory.");
+    }
+
+    File[] filesUnderPrivateKey = privateKeysDirectory.listFiles();
+
+    if (filesUnderPrivateKey.length == 0)
+      throw new RuntimeException("You must have a private key underneath the WEB-INF/privatekey/ directory.");
+
+    try {
+      
       emailAddress = System.getProperty("serviceAccountEmailAddress");
       keyFingerprints = System.getProperty("serviceAccountCertificateFingerprints");
 
-      InputStream iss = new FileInputStream(new File("WEB-INF/privatekeys/" + keyFingerprints + "-privatekey.p12"));
+      InputStream iss = new FileInputStream(filesUnderPrivateKey[0]);
       KeyStore keystore = KeyStore.getInstance("PKCS12");
       keystore.load(iss, "notasecret".toCharArray());
       privateKey = (PrivateKey) keystore.getKey("privatekey", "notasecret".toCharArray());
-
 
     } catch (UnrecoverableKeyException e) {
       e.printStackTrace(System.err);

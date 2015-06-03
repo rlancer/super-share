@@ -64,14 +64,14 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust t
 
 The private key comes from performing domain wide delegation of authority
 
-Copy the .p12 file to *src/main/webapp/WEB-INF/privatekeys* directory
+Copy the .p12 file to *src/main/webapp/WEB-INF/privatekey* directory
 
 
 ## Run the App Locally
 
     gradle appengineRun
 
-A local server should be spawned. Visit http://localhost:8080/file-name in your browser. If you see your file displayed then everything works!
+A local server should be spawned. Visit http://localhost:SERVER_PORT/file-name in your browser. If you see your file displayed then everything works!
 
 ## Deploy to App Engine
 
