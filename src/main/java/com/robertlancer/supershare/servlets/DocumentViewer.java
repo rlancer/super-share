@@ -29,17 +29,13 @@ public class DocumentViewer extends HttpServlet {
 
     String fileTitle = pathInfo.substring(1).replace("-", " ");
 
+    if (fileTitle.equalsIgnoreCase("favicon.ico"))
+      return;
+
     String folderId = System.getProperty("folder");
     String email = System.getProperty("email");
 
-    List<File> items = getFiles(folderId, email);
-
-    File fileToOutput = null;
-
-    for (File file : items) {
-      if (file.getTitle().equalsIgnoreCase(fileTitle))
-        fileToOutput = file;
-    }
+    File fileToOutput = getFile(fileTitle, folderId, email);
 
     if (fileToOutput == null) {
       sendError(404, resp);
@@ -109,11 +105,25 @@ public class DocumentViewer extends HttpServlet {
     }
   }
 
-  public static List<File> getFiles(String folderId, String email) throws IOException {
+  public static File getFile(String title, String folderId, String email) throws IOException {
+
     Drive drive = ServiceFactory.getDriveService(email);
-    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false").setMaxResults(1000).setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)");
+    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false and title contains '" + title + "'").setFields("items(owners,id,downloadUrl,iconLink,mimeType,permissions,title)").setMaxResults(1000);
     List<File> items = new DriveBackoff<FileList>().execute(request, false).getItems();
-    return items;
+
+    if (items.isEmpty())
+      return null;
+
+    if (items.size() == 1)
+      return items.get(0);
+    else {
+      for (File file : items) {
+        if (file.getTitle().equalsIgnoreCase(title))
+          return file;
+      }
+    }
+
+    return items.get(0);
   }
 
   public void sendError(int code, HttpServletResponse resp) {
