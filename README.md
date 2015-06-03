@@ -56,6 +56,8 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust t
         <property name="file.encoding" value="UTF-8"/>
         <property name="email" value="email_account_which_owns_the_folder@yourdomain.com"/>
         <property name="folder" value="id_of_folder_which_will_store_the_documents"/>
+        <property name="serviceAccountEmailAddress" value="service account email address"/>
+        <property name="serviceAccountCertificateFingerprints" value="service account certificate fingerprints"/>
     </system-properties>
 </appengine-web-app>
 ```
