@@ -64,7 +64,7 @@ Create the appengine-web.xml underneath the *webapp/WEB-INF* directory. Adjust t
 
 The private key comes from performing domain wide delegation of authority
 
-Copy the .p12 file to *webapp/WEB-INF/privatekeys* directory
+Copy the .p12 file to *src/main/webapp/WEB-INF/privatekeys* directory
 
 
 ## Run the App Locally
