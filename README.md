@@ -91,3 +91,9 @@ Go to the App Engine section - If you cant see it try clicking on More
 Next add your App Engine Id and map it to point to your sub-domain
 
 Follow the setup instructions to wire up your sub-domain in your DNS settings
+
+## Roadmap 
+
++ Email notifications for when content is viewed
++ Support for static HTML websites 
+
