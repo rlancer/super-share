@@ -96,4 +96,5 @@ Follow the setup instructions to wire up your sub-domain in your DNS settings
 
 + Email notifications for when content is viewed
 + Support for static HTML websites 
++ Support for downloading content, will have options for exporting native Google types  
 
