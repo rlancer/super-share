@@ -70,7 +70,9 @@ Copy the .p12 file to *src/main/webapp/WEB-INF/privatekey* directory
 
 ## Enable alerts on a file
 
-Simply edit the description in Drive to include the text *#SSALERT* and the owner of the file will receive an email when the file is viewed   
+Simply edit the description field of the file in Drive to include the text *#SSALERT* and the owner will receive an email from themselves when the file is viewed
+Emails include the IP address and User Agent of the viewer 
+
 
 ## Run the App Locally
 
