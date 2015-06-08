@@ -10,6 +10,7 @@ It deploys to Google App Engine and is designed to be efficient enough to run wi
 **This system automatically changes certain file permissions to include Anyone with the link can view**  
 
 + share.example.com/file-title URL pattern 
++ Receive alerts for when files are viewed, enabled per a file 
 + Supports partial matches, ie: "Road" will match "RoadTrip.mp4" 
 + No Google Drive branding 
 + Runs on Google App Engine
@@ -27,7 +28,7 @@ Demos
 ##Prerequisites
 
 +   [Perform Google Apps Domain-Wide Delegation of Authority](https://developers.google.com/drive/web/delegation)
-+   At a minimum you will need to have the *https://www.googleapis.com/auth/drive* scope enabled  
++   At a minimum you will need to have the *https://www.googleapis.com/auth/drive* and *https://www.googleapis.com/auth/gmail.compose* scopes enabled  
 +   Create a project in the [Google Cloud Console](http://console.developers.google.com)
 
 ##Get the code
@@ -67,6 +68,9 @@ The private key comes from performing domain wide delegation of authority
 
 Copy the .p12 file to *src/main/webapp/WEB-INF/privatekey* directory
 
+## Enable alerts on a file
+
+Simply edit the description in Drive to include the text *#SSALERT* and the owner of the file will receive an email when the file is viewed   
 
 ## Run the App Locally
 
@@ -94,6 +98,6 @@ Follow the setup instructions to wire up your sub-domain in your DNS settings
 
 ## Roadmap 
 
-+ Email notifications for when content is viewed
 + Support for static HTML websites 
++ Support for downloading files 
 

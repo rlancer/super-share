@@ -113,6 +113,7 @@ public class ServiceFactory {
 
     java.util.Set<String> set = new java.util.HashSet<String>();
     set.add(DriveScopes.DRIVE);
+    set.add(GmailScopes.GMAIL_COMPOSE);
     sets = java.util.Collections.unmodifiableSet(set);
 
     HttpTransport httpTransport = new NetHttpTransport();

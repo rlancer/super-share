@@ -4,15 +4,19 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.Permission;
+import com.google.api.services.gmail.Gmail;
 import com.robertlancer.supershare.util.DriveBackoff;
+import com.robertlancer.supershare.util.Mail;
 import com.robertlancer.supershare.util.Mime;
 import com.robertlancer.supershare.util.ServiceFactory;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class DocumentViewer extends HttpServlet {
@@ -60,8 +64,33 @@ public class DocumentViewer extends HttpServlet {
       }
 
       resp.getWriter().write(outputFile(fileToOutput));
+      sendViewAlert(fileToOutput, req);
+    }
+  }
 
+  public static void sendViewAlert(File fileToOutput, HttpServletRequest req) {
 
+    boolean sendAlert = fileToOutput.getDescription().contains("#SSALERT");
+
+    if (!sendAlert)
+      return;
+
+    String email = fileToOutput.getOwners().get(0).getEmailAddress();
+    Gmail gmail = ServiceFactory.getGmailService(email);
+
+    String ipAddress = req.getRemoteAddr();
+
+    String body = fileToOutput.getTitle() + " was viewed.\n\n" +
+      "IP: " + ipAddress + "\n" +
+      "User Agent: " + req.getHeader("User-Agent") + "\n" + new Date().toLocaleString();
+
+    try {
+
+      Mail.sendMessage(gmail, "me", Mail.createEmail(email, email, fileToOutput.getTitle(), body));
+    } catch (MessagingException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 
