@@ -68,9 +68,10 @@ The private key comes from performing domain wide delegation of authority
 
 Copy the .p12 file to *src/main/webapp/WEB-INF/privatekey* directory
 
-## Enable alerts on a file
+## Enable View Alert Emails for a File
 
-Simply edit the description field of the file in Drive to include the text *#SSALERT* and the owner will receive an email from themselves when the file is viewed
+Simply edit the description field of the file in Drive to include the text *#SSALERT* and 
+the owner will receive an email from themselves when the file is viewed.
 Emails include the IP address and User Agent of the viewer 
 
 
