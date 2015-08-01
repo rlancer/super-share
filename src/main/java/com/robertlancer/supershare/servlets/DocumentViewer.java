@@ -31,7 +31,7 @@ public class DocumentViewer extends HttpServlet {
       return;
     }
 
-    String fileTitle = pathInfo.substring(1).replace("-", " ");
+    String fileTitle = pathInfo.substring(1).replace("-", " ").replace("'", "");
 
     if (fileTitle.equalsIgnoreCase("favicon.ico"))
       return;
