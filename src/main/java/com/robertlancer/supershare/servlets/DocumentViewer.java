@@ -170,9 +170,16 @@ public class DocumentViewer extends HttpServlet {
     try {
       resp.setStatus(code);
       if (code == 404)
-        resp.getWriter().write("Sorry could not find the document you were looking for.");
+        resp.getWriter().write("<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">"+
+                               "<html><head><title>404 Not Found</title></head>"+
+                               "<body><h1>Not Found</h1><p>The requested resource was not found.</p>"+
+                               "<hr><address>Google Frontend</address></body></html>");
       else
-        resp.getWriter().write("An internal error occurred please try again soon.");
+        resp.getWriter().write("<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">"+
+                               "<html><head><title>500 Internal Server Error</title></head>"+
+                               "<body><h1>Not Found</h1><p>The server encountered an "+
+                               "internal error and was unable to complete your request.</p>"+
+                               "<hr><address>Google Frontend</address></body></html>");
     } catch (Exception e) {
       e.printStackTrace(System.err);
     }
