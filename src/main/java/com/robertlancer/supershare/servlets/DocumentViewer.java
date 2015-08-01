@@ -136,9 +136,15 @@ public class DocumentViewer extends HttpServlet {
   }
 
   public static File getFile(String title, String folderId, String email) throws IOException {
+    String operator;
+    if (System.getProperty("allowPartialMatches").equals("false")) {
+        operator = "=";
+    } else {
+        operator = "contains";
+    }
 
     Drive drive = ServiceFactory.getDriveService(email);
-    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false and title contains '" + title + "'").setFields("items(description,owners,id,downloadUrl,iconLink,mimeType,permissions,title)").setMaxResults(1000);
+    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false and title " + operator + " '" + title + "'").setFields("items(description,owners,id,downloadUrl,iconLink,mimeType,permissions,title)").setMaxResults(1000);
     List<File> items = new DriveBackoff<FileList>().execute(request, false).getItems();
 
     if (items.isEmpty())
