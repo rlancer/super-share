@@ -69,8 +69,12 @@ public class DocumentViewer extends HttpServlet {
   }
 
   public static void sendViewAlert(File fileToOutput, HttpServletRequest req) {
+    String description = fileToOutput.getDescription();
 
-    boolean sendAlert = fileToOutput.getDescription().contains("#SSALERT");
+    if (description == null)
+      return;
+
+    boolean sendAlert = description.contains("#SSALERT");
 
     if (!sendAlert)
       return;
