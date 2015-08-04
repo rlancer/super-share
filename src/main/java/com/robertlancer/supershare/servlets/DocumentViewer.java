@@ -31,7 +31,7 @@ public class DocumentViewer extends HttpServlet {
       return;
     }
 
-    String fileTitle = pathInfo.substring(1).replace("-", " ");
+    String fileTitle = pathInfo.substring(1).replace("-", " ").replace("'", "");
 
     if (fileTitle.equalsIgnoreCase("favicon.ico"))
       return;
@@ -69,8 +69,12 @@ public class DocumentViewer extends HttpServlet {
   }
 
   public static void sendViewAlert(File fileToOutput, HttpServletRequest req) {
+    String description = fileToOutput.getDescription();
 
-    boolean sendAlert = fileToOutput.getDescription().contains("#SSALERT");
+    if (description == null)
+      return;
+
+    boolean sendAlert = description.contains("#SSALERT");
 
     if (!sendAlert)
       return;
@@ -136,9 +140,15 @@ public class DocumentViewer extends HttpServlet {
   }
 
   public static File getFile(String title, String folderId, String email) throws IOException {
+    String operator;
+    if (System.getProperty("allowPartialMatches").equals("false")) {
+        operator = "=";
+    } else {
+        operator = "contains";
+    }
 
     Drive drive = ServiceFactory.getDriveService(email);
-    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false and title contains '" + title + "'").setFields("items(description,owners,id,downloadUrl,iconLink,mimeType,permissions,title)").setMaxResults(1000);
+    Drive.Files.List request = drive.files().list().setQ("'" + folderId + "' in parents and trashed = false and title " + operator + " '" + title + "'").setFields("items(description,owners,id,downloadUrl,iconLink,mimeType,permissions,title)").setMaxResults(1000);
     List<File> items = new DriveBackoff<FileList>().execute(request, false).getItems();
 
     if (items.isEmpty())
@@ -160,9 +170,16 @@ public class DocumentViewer extends HttpServlet {
     try {
       resp.setStatus(code);
       if (code == 404)
-        resp.getWriter().write("Sorry could not find the document you were looking for.");
+        resp.getWriter().write("<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">"+
+                               "<html><head><title>404 Not Found</title></head>"+
+                               "<body><h1>Not Found</h1><p>The requested resource was not found.</p>"+
+                               "<hr><address>Google Frontend</address></body></html>");
       else
-        resp.getWriter().write("An internal error occurred please try again soon.");
+        resp.getWriter().write("<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">"+
+                               "<html><head><title>500 Internal Server Error</title></head>"+
+                               "<body><h1>Not Found</h1><p>The server encountered an "+
+                               "internal error and was unable to complete your request.</p>"+
+                               "<hr><address>Google Frontend</address></body></html>");
     } catch (Exception e) {
       e.printStackTrace(System.err);
     }
