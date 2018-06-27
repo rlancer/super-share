@@ -25,18 +25,18 @@ Demos
 + [Google Doc](http://share.robertlancer.com/Press)
 + [Google Slides](http://share.robertlancer.com/Super-Share)
 
-##Prerequisites
+## Prerequisites
 
 +   [Perform Google Apps Domain-Wide Delegation of Authority](https://developers.google.com/drive/v2/web/delegation)
 +   At a minimum you will need to have the *https://www.googleapis.com/auth/drive* and *https://www.googleapis.com/auth/gmail.compose* scopes enabled  
 +   Create a project in the [Google Cloud Console](http://console.developers.google.com)
 
-##Get the code
+## Get the code
 
     git clone https://github.com/rlancer/super-share.git
     cd super-share
 
-##Arange your Content
+## Arange your Content
 
 + Create a folder in Drive
 + Add in the files you would like to share underneath that folder
